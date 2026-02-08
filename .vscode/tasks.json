@@ -1,0 +1,95 @@
+{
+    "version": "2.0.0",
+    "inputs": [
+        {
+            "id": "task",
+            "type": "pickString",
+            "description": "Select task",
+            "options": [
+                "go1_backflip", 
+                "go1_sideflip", 
+                "go1_sideroll", 
+                "go1_twohand", 
+                "h1_backflip",
+                "h1_twohand"
+            ],
+            "default": "go1_twohand"
+        },
+        {
+            "id": "model_num",
+            "type": "promptString",
+            "description": "Input model number",
+            "default": ""
+        },
+    ],  
+    "tasks": [
+        {
+            "label": "Train teacher",
+            "type": "shell",
+            "command": "uv",
+            "args": [
+                "run","python", "main_teacher.py",
+                "--task_cfg_path", "tasks/${input:task}.yaml",
+                "--algo_cfg_path", "algos/comoppo/${input:task}.yaml",
+                "--seed", "1",
+                "--wandb"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Play teacher",
+            "type": "shell",
+            "command": "uv",
+            "args": [
+                "run","python", "main_teacher.py",
+                "--task_cfg_path", "tasks/${input:task}.yaml",
+                "--algo_cfg_path", "algos/comoppo/${input:task}.yaml",
+                "--seed", "1",
+                "--test", 
+                "--render",
+                "--model_num", "${input:model_num}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Train student",
+            "type": "shell",
+            "command": "uv",
+            "args": [
+                "run","python", "main_student.py",
+                "--task_cfg_path", "tasks/${input:task}.yaml",
+                "--algo_cfg_path", "algos/student/${input:task}.yaml",
+                "--seed", "1",
+                "--wandb"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Play student",
+            "type": "shell",
+            "command": "uv",
+            "args": [
+                "run","python", "main_student.py",
+                "--task_cfg_path", "tasks/${input:task}.yaml",
+                "--algo_cfg_path", "algos/student/${input:task}.yaml",
+                "--seed", "1",
+                "--test", 
+                "--render",
+                "--model_num", "${input:model_num}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+    ],
+}
