@@ -130,7 +130,12 @@ class Env(VecTask):
         self.num_costs = len(self.cost_names)
         self.num_stages = len(self.stage_names)
         self.action_smooth_weight = self.cfg["env"]["control"]["action_smooth_weight"]
-        self.action_scale = self.cfg["env"]["control"]["action_scale"]
+        self.action_scale = torch_utils.to_torch(
+            self.cfg["env"]["control"]["action_scale"], dtype=torch.float32, device=self.device, requires_grad=False)
+        self.stiffness = torch_utils.to_torch(
+            self.cfg["env"]["control"]["stiffness"], dtype=torch.float32, device=self.device, requires_grad=False)
+        self.damping = torch_utils.to_torch(
+            self.cfg["env"]["control"]["damping"], dtype=torch.float32, device=self.device, requires_grad=False)
 
         # for buffer
         self.rew_buf = torch.zeros((self.num_envs, self.num_rewards),
@@ -207,6 +212,7 @@ class Env(VecTask):
         for i in range(self.num_actions):
             name = self.dof_names[i]
             self.default_dof_positions[:, i] = self.named_default_joint_positions[name]
+            print(f"Default position of {name}: {self.named_default_joint_positions[name]}")
 
         # for inner variables
         self.world_x = torch.zeros(
@@ -559,8 +565,8 @@ class Env(VecTask):
             joint_targets = self.lag_joint_target_buffer[0]
             current_dof_positions = self.dof_positions + self.motor_offsets
             current_dof_velocities = self.dof_velocities
-            torques = self.cfg["env"]["control"]["stiffness"]*(joint_targets - current_dof_positions) \
-                        - self.cfg["env"]["control"]["damping"]*current_dof_velocities
+            torques = self.stiffness*(joint_targets - current_dof_positions) \
+                        - self.damping*current_dof_velocities
             torques = torch.clip(
                 torques*self.motor_strengths, -self.dof_torques_upper_limits.unsqueeze(0), 
                 self.dof_torques_upper_limits.unsqueeze(0))

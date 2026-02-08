@@ -144,7 +144,8 @@
       <geometry>
         <mesh filename="../dae/calf.dae" />
       </geometry>
-      <material name="黑色足端_005-effect"><color rgba="0 0 0 1" /></material><material name="深色橡胶_005-effect"><color rgba="0.6717055 0.6924257 0.7742702 1" /></material></visual>
+      <!-- <material name="黑色足端_005-effect"><color rgba="0 0 0 1" /></material><material name="深色橡胶_005-effect"><color rgba="0.6717055 0.6924257 0.7742702 1" /></material></visual> -->
+      <material name=""><color rgba="1 1 1 1" /></material></visual>
     <collision>
       <origin rpy="0 -0.21 0" xyz="0.008 0 -0.06" />
       <geometry>
@@ -311,7 +312,8 @@
       <geometry>
         <mesh filename="../dae/calf_mirror.dae" />
       </geometry>
-      <material name="黑色足端_006-effect"><color rgba="0 0 0 1" /></material><material name="深色橡胶_007-effect"><color rgba="0.6717055 0.6924257 0.7742702 1" /></material></visual>
+      <!-- <material name="黑色足端_006-effect"><color rgba="0 0 0 1" /></material><material name="深色橡胶_007-effect"><color rgba="0.6717055 0.6924257 0.7742702 1" /></material></visual> -->
+      <material name=""><color rgba="1 1 1 1" /></material></visual>
     <collision>
       <origin rpy="0 -0.2 0" xyz="0.01 0 -0.06" />
       <geometry>
@@ -478,7 +480,8 @@
       <geometry>
         <mesh filename="../dae/calf.dae" />
       </geometry>
-      <material name="黑色足端_005-effect"><color rgba="0 0 0 1" /></material><material name="深色橡胶_005-effect"><color rgba="0.6717055 0.6924257 0.7742702 1" /></material></visual>
+      <!-- <material name="黑色足端_005-effect"><color rgba="0 0 0 1" /></material><material name="深色橡胶_005-effect"><color rgba="0.6717055 0.6924257 0.7742702 1" /></material></visual> -->
+      <material name=""><color rgba="1 1 1 1" /></material></visual>
     <collision>
       <origin rpy="0 -0.2 0" xyz="0.01 0 -0.06" />
       <geometry>
@@ -645,7 +648,8 @@
       <geometry>
         <mesh filename="../dae/calf_mirror.dae" />
       </geometry>
-      <material name="黑色足端_006-effect"><color rgba="0 0 0 1" /></material><material name="深色橡胶_007-effect"><color rgba="0.6717055 0.6924257 0.7742702 1" /></material></visual>
+      <!-- <material name="黑色足端_006-effect"><color rgba="0 0 0 1" /></material><material name="深色橡胶_007-effect"><color rgba="0.6717055 0.6924257 0.7742702 1" /></material></visual> -->
+      <material name=""><color rgba="1 1 1 1" /></material></visual>
     <collision>
       <origin rpy="0 -0.2 0" xyz="0.01 0 -0.06" />
       <geometry>
