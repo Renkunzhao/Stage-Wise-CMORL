@@ -11,7 +11,8 @@
                 "go1_sideroll", 
                 "go1_twohand", 
                 "h1_backflip",
-                "h1_twohand"
+                "h1_twohand",
+                "go2_backflip"
             ],
             "default": "go1_twohand"
         },
